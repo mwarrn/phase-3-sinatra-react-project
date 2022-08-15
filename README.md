@@ -1,5 +1,8 @@
 # Phase 3 Project Guidelines
 
+## Frontend Repository
+The repository for the frontend of this app is [here](https://github.com/mwarrn/phase-3-project).
+
 ## Learning Goals
 
 - Build a web basic API with Sinatra and Active Record to support a React
