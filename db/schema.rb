@@ -10,16 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_15_021149) do
+ActiveRecord::Schema.define(version: 2022_08_29_141822) do
 
-  create_table "categories", force: :cascade do |t|
+  create_table "employees", force: :cascade do |t|
     t.string "name"
-    t.integer "todo_id"
+    t.integer "workzone_id"
   end
 
-  create_table "todos", force: :cascade do |t|
+  create_table "workzones", force: :cascade do |t|
     t.string "name"
-    t.integer "category_id"
   end
 
 end

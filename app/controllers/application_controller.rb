@@ -1,39 +1,36 @@
 class ApplicationController < Sinatra::Base
   set :default_content_type, "application/json"
   
-  # CREATE: Route that creates a new task and adds it to the database.
-  post "/todos" do
-    add_todo = Todo.create(
+  get "/" do
+    'Home'
+  end
+
+  get "/workzones" do
+    workzones = Workzone.all
+    workzones.to_json
+  end
+
+  get "/employees" do
+    employees = Employee.all
+    employees.to_json
+  end
+
+  get "/workzones/:id/employees" do 
+    employees = Workzone.find(params[:id]).employees
+    employees.to_json
+  end
+
+  post "/employees" do
+    new_employee = Employee.create(
       name: params[:name],
-      category_id: params[:category_id]
     )
-    add_todo.to_json
+    new_employee.to_json
   end
 
-  # READ: Route that returns all the tasks in the database.
-  get "/todos" do
-    Todo.all.to_json
-  end
-
-  # READ: Route that returns a specific task based on the id.
-  get "/todos/:id" do
-    Todo.find(params[:id]).to_json
-  end
-
-  # UPDATE: Route that updates the task with the id that is passed in.
-  patch "/todos/:id" do
-    selected_todo = Todo.find(params[:id])
-    selected_todo.update(
-      name: params[:name],
-      category_id: params[:category_id]
-    )
-    selected_todo.to_json
-  end
-
-  # DELETE: Route that deletes the task with the id that is passed in.
-  delete "/todos/:id" do
-    selected_todo = Todo.find(params[:id])
-    selected_todo.destroy
+  delete "/employees/:id" do
+    del_employee = Employee.find(params[:id])
+    del_employee.destroy
+    del_employee.to_json
   end
 
 end
